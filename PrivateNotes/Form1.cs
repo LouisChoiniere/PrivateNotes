@@ -13,6 +13,9 @@ namespace PrivateNotes {
 		public Form1() {
 			InitializeComponent();
 		}
+		// yeet test
+        private void Form1_Load(object sender, EventArgs e) {
 
-	}
+        }
+    }
 }
