@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PrivateNotes.Controllers;
+using PrivateNotes.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,5 +22,11 @@ namespace PrivateNotes {
 			Button login = loginButton;
 			Button createAccount = createAccoutButton;
 		}
-    }
+
+		private void loginButton_Click(object sender, EventArgs e) {
+			LoginCredentials loginCredentials = new LoginCredentials(usernameInput.Text, passwordInput.Text);
+
+			LoginController.Login(loginCredentials);
+		}
+	}
 }
