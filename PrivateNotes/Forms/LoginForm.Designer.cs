@@ -24,7 +24,7 @@ namespace PrivateNotes {
 		///  the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this.button1 = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
             this.passwordInput = new System.Windows.Forms.TextBox();
             this.usernameInput = new System.Windows.Forms.TextBox();
             this.passwordLabel = new System.Windows.Forms.Label();
@@ -33,15 +33,15 @@ namespace PrivateNotes {
             this.title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // loginButton
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(165, 320);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 31);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Log In!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.loginButton.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.loginButton.Location = new System.Drawing.Point(165, 320);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(200, 31);
+            this.loginButton.TabIndex = 3;
+            this.loginButton.Text = "Log In!";
+            this.loginButton.UseVisualStyleBackColor = true;
             // 
             // passwordInput
             // 
@@ -103,7 +103,7 @@ namespace PrivateNotes {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 498);
             this.Controls.Add(this.passwordInput);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.usernameInput);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.createAccoutButton);
@@ -125,7 +125,7 @@ namespace PrivateNotes {
         private System.Windows.Forms.TextBox usernameInput;
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameLabel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loginButton;
     }
 }
 
