@@ -16,7 +16,7 @@ namespace PrivateNotes.Models {
 		public Boolean isValid() {
 
 			// check credentials
-			return false;
+			return true;
 		}
 	}
 }

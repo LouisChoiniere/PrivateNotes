@@ -1,4 +1,5 @@
 ﻿using PrivateNotes.Controllers;
+using PrivateNotes.Forms;
 using PrivateNotes.Models;
 using System;
 using System.Collections.Generic;
@@ -25,12 +26,11 @@ namespace PrivateNotes {
         private void loginButton_Click(object sender, EventArgs e) {
 			String username = usernameInput.Text;
 			String password = passwordInput.Text;
-		}
 
-		private void loginButton_Click(object sender, EventArgs e) {
-			LoginCredentials loginCredentials = new LoginCredentials(usernameInput.Text, passwordInput.Text);
-
-			LoginController.Login(loginCredentials);
+			LoginCredentials lg = new LoginCredentials(username, password);
+			if (LoginController.Login(lg)) {
+				this.Hide();
+			}
 		}
 	}
 }
