@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PrivateNotes.Controllers;
+using PrivateNotes.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,14 +17,16 @@ namespace PrivateNotes {
 		}
 		// yeet test
         private void Form1_Load(object sender, EventArgs e) {
-			
+			String username = usernameInput.Text;
+			String password = passwordInput.Text;
 			Button login = loginButton;
 			Button createAccount = createAccoutButton;
 		}
 
-        private void loginButton_Click(object sender, EventArgs e) {
-			String username = usernameInput.Text;
-			String password = passwordInput.Text;
+		private void loginButton_Click(object sender, EventArgs e) {
+			LoginCredentials loginCredentials = new LoginCredentials(usernameInput.Text, passwordInput.Text);
+
+			LoginController.Login(loginCredentials);
 		}
-    }
+	}
 }
