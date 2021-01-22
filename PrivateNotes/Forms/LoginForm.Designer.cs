@@ -42,6 +42,7 @@ namespace PrivateNotes {
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Log In!";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // passwordInput
             // 

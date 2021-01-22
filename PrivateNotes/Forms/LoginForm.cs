@@ -15,10 +15,14 @@ namespace PrivateNotes {
 		}
 		// yeet test
         private void Form1_Load(object sender, EventArgs e) {
-			String username = usernameInput.Text;
-			String password = passwordInput.Text;
+			
 			Button login = loginButton;
 			Button createAccount = createAccoutButton;
+		}
+
+        private void loginButton_Click(object sender, EventArgs e) {
+			String username = usernameInput.Text;
+			String password = passwordInput.Text;
 		}
     }
 }
