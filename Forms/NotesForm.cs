@@ -11,9 +11,7 @@ namespace PrivateNotes.Forms {
         public NotesForm() {
             InitializeComponent();
 
-            TextBox n = note;
-            Console.WriteLine(n.Text.ToString());
-            Console.WriteLine("yeet");
+            
         }
 
         private void NotesForm_Load(object sender, EventArgs e) {

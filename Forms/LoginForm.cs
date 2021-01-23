@@ -28,9 +28,10 @@ namespace PrivateNotes {
 			String password = passwordInput.Text;
 
 			LoginCredentials lg = new LoginCredentials(username, password);
-			if (LoginController.Login(lg)) {
-				this.Hide();
-			}
+			if(!LoginController.Login(lg, this)) {
+				// password invalid
+
+            }
 		}
 	}
 }
