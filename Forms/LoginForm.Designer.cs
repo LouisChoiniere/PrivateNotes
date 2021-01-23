@@ -36,7 +36,7 @@ namespace PrivateNotes {
             // loginButton
             // 
             this.loginButton.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.loginButton.Location = new System.Drawing.Point(165, 320);
+            this.loginButton.Location = new System.Drawing.Point(164, 290);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(200, 31);
             this.loginButton.TabIndex = 3;
@@ -46,7 +46,7 @@ namespace PrivateNotes {
             // 
             // usernameInput
             // 
-            this.usernameInput.Location = new System.Drawing.Point(243, 178);
+            this.usernameInput.Location = new System.Drawing.Point(240, 191);
             this.usernameInput.Name = "usernameInput";
             this.usernameInput.Size = new System.Drawing.Size(195, 23);
             this.usernameInput.TabIndex = 1;
@@ -55,7 +55,7 @@ namespace PrivateNotes {
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.passwordLabel.Location = new System.Drawing.Point(98, 238);
+            this.passwordLabel.Location = new System.Drawing.Point(101, 191);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(104, 23);
             this.passwordLabel.TabIndex = 3;
@@ -65,7 +65,7 @@ namespace PrivateNotes {
             // 
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.usernameLabel.Location = new System.Drawing.Point(97, 178);
+            this.usernameLabel.Location = new System.Drawing.Point(100, 141);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(105, 23);
             this.usernameLabel.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace PrivateNotes {
             // 
             // createAccoutButton
             // 
-            this.createAccoutButton.Location = new System.Drawing.Point(201, 428);
+            this.createAccoutButton.Location = new System.Drawing.Point(196, 366);
             this.createAccoutButton.Name = "createAccoutButton";
             this.createAccoutButton.Size = new System.Drawing.Size(128, 24);
             this.createAccoutButton.TabIndex = 69;
@@ -84,8 +84,8 @@ namespace PrivateNotes {
             // 
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.title.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.title.Location = new System.Drawing.Point(70, 47);
+            this.title.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.title.Location = new System.Drawing.Point(65, 25);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(406, 36);
             this.title.TabIndex = 0;
@@ -93,7 +93,7 @@ namespace PrivateNotes {
             // 
             // passwordInput
             // 
-            this.passwordInput.Location = new System.Drawing.Point(243, 237);
+            this.passwordInput.Location = new System.Drawing.Point(240, 141);
             this.passwordInput.Name = "passwordInput";
             this.passwordInput.PasswordChar = '*';
             this.passwordInput.Size = new System.Drawing.Size(195, 23);
@@ -104,13 +104,13 @@ namespace PrivateNotes {
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 498);
-            this.Controls.Add(this.passwordInput);
-            this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.usernameInput);
-            this.Controls.Add(this.passwordLabel);
-            this.Controls.Add(this.createAccoutButton);
-            this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.title);
+            this.Controls.Add(this.passwordLabel);
+            this.Controls.Add(this.usernameLabel);
+            this.Controls.Add(this.passwordInput);
+            this.Controls.Add(this.usernameInput);
+            this.Controls.Add(this.createAccoutButton);
+            this.Controls.Add(this.loginButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login";
             this.Text = "Login";
