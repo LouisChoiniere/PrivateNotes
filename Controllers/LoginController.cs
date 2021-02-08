@@ -23,8 +23,22 @@ namespace PrivateNotes.Controllers {
 		}
 
 		public static Boolean Register(LoginCredentials loginCredentials) {
+			// get the bytes to store from the credentials
 			byte[] bytes = loginCredentials.GetBytes();
 
+			// base64 of the username
+			string username = loginCredentials.Username;
+
+			// read through the bytes to see if username exists 
+			byte[] rawBytes = ReadStoredBytes();
+			for (int i = 0; i < rawBytes.Length / 288; i++) {
+				int lowerIndex = 288 * i;
+				byte[] user = rawBytes[lowerIndex..(lowerIndex + 288)];
+				if(username.Equals(Convert.ToBase64String(user[0..32])))
+					return false;
+			}
+
+			// write the bytes to the file
 			using (var stream = new FileStream("credentials.dat", FileMode.Append)) {
 				stream.Write(bytes, 0, bytes.Length);
 			}
@@ -35,18 +49,10 @@ namespace PrivateNotes.Controllers {
 		public static byte[] GetHash(string username) {
 
 			// all bytes stored in file
-			byte[] rawBytes;
+			byte[] rawBytes = ReadStoredBytes();
 
 			// dictionary of users and hash
 			Dictionary<string, byte[]> credentials = new Dictionary<string, byte[]>();
-
-			// read the file
-			try {
-				rawBytes = File.ReadAllBytes("credentials.dat");
-			} catch (Exception e) {
-				Console.WriteLine(e.ToString());
-				return null;
-			}
 
 			// for each user add it to the dictionary
 			for (int i = 0; i < rawBytes.Length / 288; i++) {
@@ -57,6 +63,18 @@ namespace PrivateNotes.Controllers {
 
 			// return specific user
 			return credentials[username];
+		}
+
+		public static byte[] ReadStoredBytes() {
+			byte[] rawBytes = null;
+
+			try {
+				rawBytes = File.ReadAllBytes("credentials.dat");
+			} catch (Exception e) {
+				Console.WriteLine(e.ToString());
+			}
+
+			return rawBytes;
 		}
 	}
 }
