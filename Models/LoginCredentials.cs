@@ -40,9 +40,6 @@ namespace PrivateNotes.Models {
 			byte[] salt = GenerateSalt(128);
 			byte[] pass = Hash(password, salt);
 
-			byte[] bytes = new byte[288];
-
-
 			return user.Concat(salt).Concat(pass).ToArray();
 		}
 
