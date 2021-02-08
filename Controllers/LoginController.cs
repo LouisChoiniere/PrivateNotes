@@ -56,7 +56,11 @@ namespace PrivateNotes.Controllers {
 			}
 
 			// return specific user
-			return credentials[username];
+			if (credentials.ContainsKey(username))
+				return credentials[username];
+			else
+				return null;
+
 		}
 	}
 }
