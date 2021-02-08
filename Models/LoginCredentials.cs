@@ -7,6 +7,11 @@ using System.Text;
 namespace PrivateNotes.Models {
 	class LoginCredentials {
 
+		public string Username {
+			get {
+				return Convert.ToBase64String(Sha256_hash(username));
+			}
+		}
 		private string username;
 		private string password;
 
@@ -18,7 +23,7 @@ namespace PrivateNotes.Models {
 		public Boolean IsValid() {
 
 			// Get the hash of the username
-			byte[] storedBytes = LoginController.GetHash(Convert.ToBase64String(Sha256_hash(username)));
+			byte[] storedBytes = LoginController.GetHash(Username);
 
 			// Return if there is no hash for the specified user
 			if (storedBytes is null)
