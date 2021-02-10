@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace PrivateNotes.Models {
-	class Note {
+	public class Note {
 
-		string title { get; set; }
-		string text { get; set; }
+		public string Title { get; set; }
+		public string Text { get; set; }
+		public DateTime Date { get; set; }
 
-		public Note(string title, string text) {
-			this.title = title;
-			this.text = text;
+		public Note() {
 		}
+		public Note(string Title) {
+			this.Title = Title;
+		}
+
+		public Note(string title, string text, DateTime date) {
+			this.Title = title;
+			this.Text = text;
+			this.Date = date;
+		}
+
 	}
 }

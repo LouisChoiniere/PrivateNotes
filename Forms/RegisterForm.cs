@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -18,7 +19,6 @@ namespace PrivateNotes.Forms {
             if (passwordInput.Text.Equals(confirmPasswordInput.Text)){
                 LoginCredentials credentials = new LoginCredentials(usernameInput.Text, passwordInput.Text);
                 if (LoginController.Register(credentials)){
-
                     registerButton.Enabled = false;
                     this.Hide();
                     var login = new Login();
@@ -27,6 +27,7 @@ namespace PrivateNotes.Forms {
                 }
                 else {
                     // show user that someone already has an account named that way
+                    incorrect2.Show();
                 }
             }
             else

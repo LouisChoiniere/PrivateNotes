@@ -12,12 +12,14 @@ namespace PrivateNotes.Models {
 				return Convert.ToBase64String(Sha256_hash(username));
 			}
 		}
-		private string username;
-		private string password;
+		public string username;
+		public string password;
 
 		public LoginCredentials(string username, string password) {
 			this.username = username;
 			this.password = password;
+		}
+		public LoginCredentials() {
 		}
 
 		public Boolean IsValid() {

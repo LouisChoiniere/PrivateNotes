@@ -1,23 +1,43 @@
 ﻿using PrivateNotes.Forms;
 using PrivateNotes.Models;
+using PrivateNotes.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace PrivateNotes.Controllers {
 	class LoginController {
 
+		private static LoginCredentials loggedUser = new LoginCredentials();
+
 		public static bool Login(LoginCredentials loginCredentials, Form form) {
 
 			if (loginCredentials.IsValid()) {
 				// start notes page
-				form.Hide();
+				loggedUser.username = loginCredentials.username;
+				loggedUser.password = loginCredentials.password;
+
+				
+				DirectoryInfo d = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username);
+				FileInfo[] Files = d.GetFiles("*.aes"); 
+				//Getting Text files
+				foreach (FileInfo file in Files) {
+					string output = file.Name.Split('.')[0];
+					Encryption.FileDecrypt(
+						Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\" + file.Name,
+						Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\" + output + ".txt",
+						loginCredentials.password
+					);
+				}
+				
+
+                form.Hide();
 				var nt = new NotesForm();
 				nt.ShowDialog();
 				form.Close();
-				return true;
 			}
 			return false;
 		}
@@ -42,6 +62,8 @@ namespace PrivateNotes.Controllers {
 			using (var stream = new FileStream("credentials.dat", FileMode.Append)) {
 				stream.Write(bytes, 0, bytes.Length);
 			}
+
+			Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username);
 
 			return true;
 		}
@@ -80,5 +102,10 @@ namespace PrivateNotes.Controllers {
 
 			return rawBytes;
 		}
+
+		public static LoginCredentials GetLoginCredentials() {
+			return loggedUser;
+        }
+
 	}
 }

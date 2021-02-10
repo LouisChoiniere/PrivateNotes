@@ -18,9 +18,6 @@ namespace PrivateNotes {
 		}
 		// yeet test
         private void Form1_Load(object sender, EventArgs e) {
-			
-			Button login = loginButton;
-			Button createAccount = createAccoutButton;
 		}
 
         private void loginButton_Click(object sender, EventArgs e) {
@@ -28,10 +25,10 @@ namespace PrivateNotes {
 			String password = passwordInput.Text;
 
 			LoginCredentials lg = new LoginCredentials(username, password);
-			if(!LoginController.Login(lg, this)) {
+			if (!LoginController.Login(lg, this)) {
 				// password invalid
 				incorrect.Visible = true;
-            }
+			}
 		}
 
         private void createAccoutButton_Click(object sender, EventArgs e) {
@@ -40,5 +37,6 @@ namespace PrivateNotes {
 			rf.ShowDialog();
 			this.Close();
 		}
-    }
+		
+	}
 }

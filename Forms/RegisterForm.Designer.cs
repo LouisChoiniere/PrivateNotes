@@ -33,13 +33,15 @@ namespace PrivateNotes.Forms {
             this.registerButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.confirmPasswordInput = new System.Windows.Forms.MaskedTextBox();
+            this.incorrect2 = new System.Windows.Forms.Label();
+            this.output = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // incorrect
             // 
             this.incorrect.AutoSize = true;
             this.incorrect.ForeColor = System.Drawing.Color.Red;
-            this.incorrect.Location = new System.Drawing.Point(202, 279);
+            this.incorrect.Location = new System.Drawing.Point(199, 263);
             this.incorrect.Name = "incorrect";
             this.incorrect.Size = new System.Drawing.Size(137, 15);
             this.incorrect.TabIndex = 108;
@@ -121,11 +123,32 @@ namespace PrivateNotes.Forms {
             this.confirmPasswordInput.Size = new System.Drawing.Size(195, 23);
             this.confirmPasswordInput.TabIndex = 3;
             // 
+            // incorrect2
+            // 
+            this.incorrect2.AutoSize = true;
+            this.incorrect2.ForeColor = System.Drawing.Color.Red;
+            this.incorrect2.Location = new System.Drawing.Point(199, 291);
+            this.incorrect2.Name = "incorrect2";
+            this.incorrect2.Size = new System.Drawing.Size(133, 15);
+            this.incorrect2.TabIndex = 111;
+            this.incorrect2.Text = "Username already exists";
+            this.incorrect2.Visible = false;
+            // 
+            // output
+            // 
+            this.output.AutoSize = true;
+            this.output.Location = new System.Drawing.Point(327, 374);
+            this.output.Name = "output";
+            this.output.Size = new System.Drawing.Size(0, 15);
+            this.output.TabIndex = 112;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 417);
+            this.Controls.Add(this.output);
+            this.Controls.Add(this.incorrect2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.confirmPasswordInput);
             this.Controls.Add(this.incorrect);
@@ -153,5 +176,7 @@ namespace PrivateNotes.Forms {
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox confirmPasswordInput;
+        private System.Windows.Forms.Label incorrect2;
+        private System.Windows.Forms.Label output;
     }
 }
