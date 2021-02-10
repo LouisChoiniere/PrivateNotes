@@ -31,6 +31,10 @@ namespace PrivateNotes.Controllers {
 
 			// read through the bytes to see if username exists 
 			byte[] rawBytes = ReadStoredBytes();
+
+			if (rawBytes is null)
+				return false;
+
 			for (int i = 0; i < rawBytes.Length / 288; i++) {
 				int lowerIndex = 288 * i;
 				byte[] user = rawBytes[lowerIndex..(lowerIndex + 288)];
@@ -50,6 +54,9 @@ namespace PrivateNotes.Controllers {
 
 			// all bytes stored in file
 			byte[] rawBytes = ReadStoredBytes();
+
+			if (rawBytes is null)
+				return null;
 
 			// dictionary of users and hash
 			Dictionary<string, byte[]> credentials = new Dictionary<string, byte[]>();
