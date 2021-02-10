@@ -30,8 +30,15 @@ namespace PrivateNotes {
 			LoginCredentials lg = new LoginCredentials(username, password);
 			if(!LoginController.Login(lg, this)) {
 				// password invalid
-
+				incorrect.Visible = true;
             }
 		}
-	}
+
+        private void createAccoutButton_Click(object sender, EventArgs e) {
+			this.Hide();
+			var rf = new RegisterForm();
+			rf.ShowDialog();
+			this.Close();
+		}
+    }
 }
