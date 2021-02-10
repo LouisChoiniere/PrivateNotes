@@ -48,7 +48,7 @@ namespace PrivateNotes.Forms {
             // 
             this.addNoteButton.Location = new System.Drawing.Point(0, 60);
             this.addNoteButton.Name = "addNoteButton";
-            this.addNoteButton.Size = new System.Drawing.Size(270, 23);
+            this.addNoteButton.Size = new System.Drawing.Size(260, 23);
             this.addNoteButton.TabIndex = 5;
             this.addNoteButton.Text = "+ Add Note";
             this.addNoteButton.UseVisualStyleBackColor = true;

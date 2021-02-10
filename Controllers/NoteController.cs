@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace PrivateNotes.Controllers {
         Note selectedNote;
         TextBox titleBox;
         TextBox descriptionBox;
+        List<Note> list = new List<Note>();
+        bool newNote = false;
 
         public void ini(FlowLayoutPanel navBar, Button addNoteButton, Panel mainPanel) {
             this.navBar = navBar;
@@ -74,6 +77,7 @@ namespace PrivateNotes.Controllers {
         }
 
 		public void AddNewNote() {
+            newNote = true;
 			// create the brand new note here
 			Note note = new Note("New Note", "", DateTime.Today);
             selectedNote = note;
@@ -82,7 +86,9 @@ namespace PrivateNotes.Controllers {
             Label titleLabel = new Label {
                 Font = new Font("Arial", 12),
                 Text = note.Title,
-                Location = new Point(8, 15)
+                Location = new Point(8, 15),
+                AutoSize = true
+
             };
 
             // this label is the date of the note (when it was created)
@@ -94,9 +100,10 @@ namespace PrivateNotes.Controllers {
 
             // the notePanel that holds all the items
             Panel notePanel = new Panel {
-                Size = new Size(255, 70)
+                Size = new Size(255, 70),
+                BackColor = Color.LightGray
             };
-            notePanel.Name = "notePanel";
+            notePanel.Name = "notePanel" + list.Count;
             notePanel.Controls.Add(titleLabel);
 			notePanel.Controls.Add(dateLabel);
             
@@ -107,16 +114,36 @@ namespace PrivateNotes.Controllers {
 			addNoteButton.Enabled = true;
 
             lastPanel = notePanel;
+            list.Add(note);
+            titleBox.Text = note.Title;
+            descriptionBox.Text = "";
 		}
 
         public void panelClick(object sender, EventArgs e) {
-            Panel thisPanel = (Panel)sender;
-            
+            newNote = false;
+            lastPanel = (Panel)sender;
+            selectedNote = list[lastPanel.Parent.Controls.GetChildIndex(lastPanel)];
+            titleBox.Text = selectedNote.Title;
+            descriptionBox.Text = selectedNote.Text;
+        }
+
+        public void labelClick(object sender, EventArgs e) {
+            newNote = false;
+            Label label = (Label)sender;
+            lastPanel = (Panel)label.Parent;
+            selectedNote = list[lastPanel.Parent.Controls.GetChildIndex(lastPanel)];
+            titleBox.Text = selectedNote.Title;
+            descriptionBox.Text = selectedNote.Text;
         }
 
         public void saveButtonClick(object sender, EventArgs e) {
             LoginCredentials loginCredentials = LoginController.GetLoginCredentials();
-            string path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\" + lastPanel.Name + ".txt";
+            string path = "";
+            if (newNote)
+                path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\notePanel"  + list.Count+ ".txt";
+            else
+                path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\notePanel" + lastPanel.Parent.Controls.GetChildIndex(lastPanel) + ".txt";
+
 
             selectedNote.Title = titleBox.Text;
             selectedNote.Text = descriptionBox.Text;
@@ -139,25 +166,22 @@ namespace PrivateNotes.Controllers {
 
         public void GetNotes() {
             LoginCredentials loggedUser = LoginController.GetLoginCredentials();
-            List<Note> list = new List<Note>();
             DirectoryInfo d = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\" + loggedUser.Username);
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            FileInfo[] Files = d.GetFiles("*.txt");
+            int count1 = 0;
+            //Getting Text files
             foreach (FileInfo file in Files) {
-                string yeet = File.ReadAllText(file.FullName);
-                string title = "";
-                string description = "";
+                string title = File.ReadLines(file.FullName).First();
+                string description = File.ReadAllText(file.FullName);
+                description = description.Replace(title, "");
                 int count = 0;
-                foreach (string line in yeet.Split("\n")) {
-                    if (count == 0)
-                        title = Regex.Replace(line, @"\t|\n|\r", "");
-                    description += line;
-                    count++;
-                }
+
                 // this label is the title of the ntoe
                 Label titleLabel = new Label {
                     Font = new Font("Arial", 12),
                     Text = title,
-                    Location = new Point(8, 15)
+                    Location = new Point(8, 15),
+                    AutoSize = true
                 };
 
                 // this label is the date of the note (when it was created)
@@ -169,16 +193,22 @@ namespace PrivateNotes.Controllers {
 
                 // the notePanel that holds all the items
                 Panel notePanel = new Panel {
-                    Size = new Size(255, 70)
+                    Size = new Size(255, 70),
+                    BackColor = Color.LightGray
                 };
-                notePanel.Name = "notePanel";
+                notePanel.Name = "notePanel" + count;
                 notePanel.Controls.Add(titleLabel);
                 notePanel.Controls.Add(dateLabel);
 
                 notePanel.Click += panelClick;
+                titleLabel.Click += labelClick;
+                dateLabel.Click += labelClick;
 
                 // add the panel to the nav bar 
                 navBar.Controls.Add(notePanel);
+
+                list.Add(new Note(title, description, DateTime.Now));
+                count1++;
             }
 
             
