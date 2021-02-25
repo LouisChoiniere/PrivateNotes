@@ -21,14 +21,17 @@ namespace PrivateNotes {
 		}
 
         private void loginButton_Click(object sender, EventArgs e) {
-			String username = usernameInput.Text;
-			String password = passwordInput.Text;
+			if (usernameInput.Text.Length >= 1) {
 
-			LoginCredentials lg = new LoginCredentials(username, password);
-			if (!LoginController.Login(lg, this)) {
-				// password invalid
-				incorrect.Visible = true;
+				LoginCredentials lg = new LoginCredentials(usernameInput.Text, passwordInput.Text);
+				if (!LoginController.Login(lg, this)) {
+					// password invalid
+					incorrect.Visible = true;
+				}
 			}
+            else {
+				incorrect.Visible = true;
+            }
 		}
 
         private void createAccoutButton_Click(object sender, EventArgs e) {

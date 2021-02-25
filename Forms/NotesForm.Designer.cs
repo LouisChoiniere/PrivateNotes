@@ -35,6 +35,7 @@ namespace PrivateNotes.Forms {
             // 
             // listPanel
             // 
+            this.listPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listPanel.Controls.Add(this.addNoteButton);
             this.listPanel.Controls.Add(this.notesPanel);
             this.listPanel.Controls.Add(this.title);
@@ -81,6 +82,7 @@ namespace PrivateNotes.Forms {
             // 
             // mainPanel
             // 
+            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.mainPanel.Location = new System.Drawing.Point(277, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(985, 655);

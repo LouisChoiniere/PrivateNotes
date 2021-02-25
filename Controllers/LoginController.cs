@@ -20,7 +20,6 @@ namespace PrivateNotes.Controllers {
 				loggedUser.username = loginCredentials.username;
 				loggedUser.password = loginCredentials.password;
 
-				
 				DirectoryInfo d = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username);
 				FileInfo[] Files = d.GetFiles("*.aes"); 
 				//Getting Text files
@@ -32,7 +31,6 @@ namespace PrivateNotes.Controllers {
 						loginCredentials.password
 					);
 				}
-				
 
                 form.Hide();
 				var nt = new NotesForm();

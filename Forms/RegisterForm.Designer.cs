@@ -29,12 +29,13 @@ namespace PrivateNotes.Forms {
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordInput = new System.Windows.Forms.MaskedTextBox();
-            this.usernameInput = new System.Windows.Forms.TextBox();
+            this.usernameInputRegister = new System.Windows.Forms.TextBox();
             this.registerButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.confirmPasswordInput = new System.Windows.Forms.MaskedTextBox();
             this.incorrect2 = new System.Windows.Forms.Label();
             this.output = new System.Windows.Forms.Label();
+            this.incorrectUsername2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // incorrect
@@ -87,12 +88,12 @@ namespace PrivateNotes.Forms {
             this.passwordInput.Size = new System.Drawing.Size(195, 23);
             this.passwordInput.TabIndex = 2;
             // 
-            // usernameInput
+            // usernameInputRegister
             // 
-            this.usernameInput.Location = new System.Drawing.Point(258, 118);
-            this.usernameInput.Name = "usernameInput";
-            this.usernameInput.Size = new System.Drawing.Size(195, 23);
-            this.usernameInput.TabIndex = 1;
+            this.usernameInputRegister.Location = new System.Drawing.Point(258, 118);
+            this.usernameInputRegister.Name = "usernameInputRegister";
+            this.usernameInputRegister.Size = new System.Drawing.Size(195, 23);
+            this.usernameInputRegister.TabIndex = 1;
             // 
             // registerButton
             // 
@@ -142,11 +143,23 @@ namespace PrivateNotes.Forms {
             this.output.Size = new System.Drawing.Size(0, 15);
             this.output.TabIndex = 112;
             // 
+            // incorrectUsername2
+            // 
+            this.incorrectUsername2.AutoSize = true;
+            this.incorrectUsername2.ForeColor = System.Drawing.Color.Red;
+            this.incorrectUsername2.Location = new System.Drawing.Point(206, 291);
+            this.incorrectUsername2.Name = "incorrectUsername2";
+            this.incorrectUsername2.Size = new System.Drawing.Size(121, 15);
+            this.incorrectUsername2.TabIndex = 113;
+            this.incorrectUsername2.Text = "Username is incorrect";
+            this.incorrectUsername2.Visible = false;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 417);
+            this.Controls.Add(this.incorrectUsername2);
             this.Controls.Add(this.output);
             this.Controls.Add(this.incorrect2);
             this.Controls.Add(this.label1);
@@ -156,7 +169,7 @@ namespace PrivateNotes.Forms {
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.passwordInput);
-            this.Controls.Add(this.usernameInput);
+            this.Controls.Add(this.usernameInputRegister);
             this.Controls.Add(this.registerButton);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
@@ -172,11 +185,12 @@ namespace PrivateNotes.Forms {
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.MaskedTextBox passwordInput;
-        private System.Windows.Forms.TextBox usernameInput;
+        private System.Windows.Forms.TextBox usernameInputRegister;
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox confirmPasswordInput;
         private System.Windows.Forms.Label incorrect2;
         private System.Windows.Forms.Label output;
+        private System.Windows.Forms.Label incorrectUsername2;
     }
 }

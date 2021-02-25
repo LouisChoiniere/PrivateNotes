@@ -31,7 +31,6 @@ namespace PrivateNotes.Forms {
 
         private void addNoteButton_Click(object sender, EventArgs e) {
             nc.AddNewNote();
-
             
         }
         private void NotesForm_FormClosing(object sender, FormClosingEventArgs e) {

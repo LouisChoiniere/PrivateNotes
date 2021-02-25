@@ -16,22 +16,27 @@ namespace PrivateNotes.Forms {
         }
 
         private void registerButton_Click(object sender, EventArgs e) {
-            if (passwordInput.Text.Equals(confirmPasswordInput.Text)){
-                LoginCredentials credentials = new LoginCredentials(usernameInput.Text, passwordInput.Text);
-                if (LoginController.Register(credentials)){
-                    registerButton.Enabled = false;
-                    this.Hide();
-                    var login = new Login();
-                    login.ShowDialog();
-                    this.Close();
+            if (usernameInputRegister.TextLength >= 1) {
+                if (passwordInput.Text.Equals(confirmPasswordInput.Text)) {
+                    LoginCredentials credentials = new LoginCredentials(usernameInputRegister.Text, passwordInput.Text);
+                    if (LoginController.Register(credentials)) {
+                        registerButton.Enabled = false;
+                        this.Hide();
+                        var login = new Login();
+                        login.ShowDialog();
+                        this.Close();
+                    }
+                    else {
+                        // show user that someone already has an account named that way
+                        incorrect2.Show();
+                    }
                 }
-                else {
-                    // show user that someone already has an account named that way
-                    incorrect2.Show();
-                }
+                else
+                    incorrect.Show();
             }
-            else
-                incorrect.Show();
+            else {
+                incorrectUsername2.Visible = true;
+            }
         }
 
     }

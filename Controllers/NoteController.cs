@@ -26,12 +26,14 @@ namespace PrivateNotes.Controllers {
             this.navBar = navBar;
             this.addNoteButton = addNoteButton;
             this.mainPanel = mainPanel;
+
             TextBox titleBox = new TextBox {
                 Font = new Font("Arial", 14),
                 Text = "",
                 Size = new Size(358, 30),
                 Location = new Point(86, 70),
-                Name = "titleBox"
+                Name = "titleBox",
+                Visible = false
             };
 
             TextBox descriptionBox = new TextBox {
@@ -40,22 +42,23 @@ namespace PrivateNotes.Controllers {
                 Location = new Point(86, 127),
                 Name = "descriptionBox",
                 Multiline = true,
-                AcceptsReturn = true
+                AcceptsReturn = true,
+                Visible = false
             };
 
-            RadioButton aesBox = new RadioButton {
-                Font = new Font("Segoe UI", 9),
-                Name = "aesBox",
-                Text = "AES - Rijndael",
-                Location = new Point(792, 45)
-            };
+            //RadioButton aesBox = new RadioButton {
+            //    Font = new Font("Segoe UI", 9),
+            //    Name = "aesBox",
+            //    Text = "AES - Rijndael",
+            //    Location = new Point(792, 45)
+            //};
 
-            RadioButton rijndaleBox = new RadioButton {
-                Font = new Font("Segoe UI", 9),
-                Name = "",
-                Text = "",
-                Location = new Point(792, 76)
-            };
+            //RadioButton rijndaleBox = new RadioButton {
+            //    Font = new Font("Segoe UI", 9),
+            //    Name = "",
+            //    Text = "",
+            //    Location = new Point(792, 76)
+            //};
 
             Button saveButton = new Button {
                 Font = new Font("Arial", 12),
@@ -71,12 +74,14 @@ namespace PrivateNotes.Controllers {
 
             mainPanel.Controls.Add(titleBox);
             mainPanel.Controls.Add(descriptionBox);
-            mainPanel.Controls.Add(aesBox);
-            mainPanel.Controls.Add(rijndaleBox);
+            //mainPanel.Controls.Add(aesBox);
+            //mainPanel.Controls.Add(rijndaleBox);
             mainPanel.Controls.Add(saveButton);
         }
 
 		public void AddNewNote() {
+            titleBox.Visible = true;
+            descriptionBox.Visible = true;
             newNote = true;
 			// create the brand new note here
 			Note note = new Note("New Note", "", DateTime.Today);
@@ -120,6 +125,8 @@ namespace PrivateNotes.Controllers {
 		}
 
         public void panelClick(object sender, EventArgs e) {
+            titleBox.Visible = true;
+            descriptionBox.Visible = true;
             newNote = false;
             lastPanel = (Panel)sender;
             selectedNote = list[lastPanel.Parent.Controls.GetChildIndex(lastPanel)];
@@ -128,6 +135,8 @@ namespace PrivateNotes.Controllers {
         }
 
         public void labelClick(object sender, EventArgs e) {
+            titleBox.Visible = true;
+            descriptionBox.Visible = true;
             newNote = false;
             Label label = (Label)sender;
             lastPanel = (Panel)label.Parent;
@@ -140,7 +149,7 @@ namespace PrivateNotes.Controllers {
             LoginCredentials loginCredentials = LoginController.GetLoginCredentials();
             string path = "";
             if (newNote)
-                path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\notePanel"  + list.Count+ ".txt";
+                path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\notePanel" + list.Count + ".txt";
             else
                 path = Directory.GetCurrentDirectory() + "\\" + loginCredentials.Username + "\\notePanel" + lastPanel.Parent.Controls.GetChildIndex(lastPanel) + ".txt";
 
@@ -153,11 +162,11 @@ namespace PrivateNotes.Controllers {
             byte[] title = new UTF8Encoding(true).GetBytes(titleBox.Text.ToString() + "\n");
             byte[] description = new UTF8Encoding(true).GetBytes(descriptionBox.Text.ToString());
 
-            using(FileStream fs = File.Create(path)) {
+            using (FileStream fs = File.Create(path)) {
                 fs.Write(title);
                 fs.Write(description);
             }
-            
+
             Encryption.FileEncrypt(
                 path,
                 loginCredentials.password
